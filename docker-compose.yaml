@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  artinfo-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/myfolder/src
+      - ./pages:/myfolder/pages
+      - ./public:/myfolder/public
+    ports:
+      - 3000:3000
