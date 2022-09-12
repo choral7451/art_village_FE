@@ -74,6 +74,7 @@ export const Logo = styled.div`
   align-items: center;
   justify-content: flex-start;
   font-weight: bold;
+  cursor: pointer;
   color: #2b2e32;
   font-size: 40px;
   height: 100%;
