@@ -16,12 +16,17 @@ export default function HeaderUI(props: IHeaderUI) {
       </S.HeaderTop>
       <S.HeaderMid>
         <S.HeaderMidContents>
-          <S.Logo id="/" onClick={props.onClickPush}>
-            ARTVillage
-          </S.Logo>
+          <S.LogoWrapper>
+            <S.Logo id="/" onClick={props.onClickPush}>
+              ARTVillage
+            </S.Logo>
+          </S.LogoWrapper>
           <S.Nav>
-            <S.NavBtn>강의</S.NavBtn>
+            <S.NavBtn id="/courses" onClick={props.onClickPush}>
+              강의
+            </S.NavBtn>
             <S.NavBtn>악보</S.NavBtn>
+            <S.NavBtn>공지</S.NavBtn>
           </S.Nav>
           <S.SearchIcon />
         </S.HeaderMidContents>

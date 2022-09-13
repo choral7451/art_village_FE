@@ -32,7 +32,7 @@ export default function SignupUI() {
         </S.AgreeWrapper>
         <S.AgreeWrapper>
           <S.CheckBox type={"checkbox"} />
-          <S.AgreeTitle>(필수) 이유약관 동의</S.AgreeTitle>
+          <S.AgreeTitle>(필수) 이용약관 동의</S.AgreeTitle>
           <S.Arrow>{">"}</S.Arrow>
         </S.AgreeWrapper>
         <S.AgreeWrapper>

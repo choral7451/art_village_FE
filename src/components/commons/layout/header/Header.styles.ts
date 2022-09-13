@@ -4,7 +4,7 @@ import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
 export const Header = styled.div`
   width: 100vw;
   height: 240px;
-  border-bottom: 2px solid #32c2b9;
+
   display: flex;
   flex-direction: column;
 `;
@@ -69,16 +69,21 @@ export const HeaderMidContents = styled.div`
   width: 65%;
 `;
 
-export const Logo = styled.div`
+export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  height: 100%;
+  width: 60%;
+`;
+
+export const Logo = styled.div`
   font-weight: bold;
   cursor: pointer;
   color: #2b2e32;
   font-size: 40px;
-  height: 100%;
-  width: 60%;
+  height: fit-content;
+  width: fit-content;
 `;
 
 export const Nav = styled.div`

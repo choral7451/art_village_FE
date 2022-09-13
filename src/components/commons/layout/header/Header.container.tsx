@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { MouseEvent } from "react";
 import HeaderUI from "./Header.presenter";
 
-export default function HeaderContainer() {
+export default function Header() {
   const router = useRouter();
 
   const onClickPush = (e: MouseEvent<HTMLDivElement>) => {

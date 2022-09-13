@@ -1,10 +1,12 @@
-import HeaderContainer from "./header/Header.container";
+import Footer from "./footer/Footer.container";
+import Header from "./header/Header.container";
 
 export default function Layout(props: any) {
   return (
     <>
-      <HeaderContainer />
+      <Header />
       <div>{props.children}</div>
+      <Footer />
     </>
   );
 }
