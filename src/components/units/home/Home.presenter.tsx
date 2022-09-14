@@ -4,8 +4,10 @@ import * as S from "./Home.styles";
 import BannerContainer from "./banner/Banner.container";
 import { RightOutlined } from "@ant-design/icons";
 import Card from "../../commons/productCard/Card.container";
+import { IHomeUI } from "./Home.types";
+import ScoreCard from "../../commons/scoreCard/Score.container";
 
-export default function HomeUI() {
+export default function HomeUI(props: IHomeUI) {
   return (
     <S.Body>
       <BannerContainer />
@@ -13,8 +15,8 @@ export default function HomeUI() {
         <S.MembershipWrapper>
           <S.MembershipBtn>멤버쉽 가입</S.MembershipBtn>
         </S.MembershipWrapper>
-        <S.SubTitle>
-          신규 강의 ✨ <RightOutlined />
+        <S.SubTitle id="/courses" onClick={props.onClickPush}>
+          강의 ✨ <RightOutlined />
         </S.SubTitle>
         <S.CardRow>
           <Card />
@@ -24,8 +26,15 @@ export default function HomeUI() {
           <Card />
         </S.CardRow>
         <S.SubTitle>
-          신규 악보 🎼 <RightOutlined />
+          악보 🎼 <RightOutlined />
         </S.SubTitle>
+        <S.ScoreRow>
+          <ScoreCard />
+          <ScoreCard />
+          <ScoreCard />
+          <ScoreCard />
+          <ScoreCard />
+        </S.ScoreRow>
       </S.Wrapper>
     </S.Body>
   );

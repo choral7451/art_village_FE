@@ -27,6 +27,13 @@ export const CardRow = styled.div`
   height: 400px;
 `;
 
+export const ScoreRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+`;
+
 export const MembershipWrapper = styled.div`
   display: flex;
   justify-content: center;

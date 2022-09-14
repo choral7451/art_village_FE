@@ -10,4 +10,4 @@ services:
       - ./pages:/myfolder/pages
       - ./public:/myfolder/public
     ports:
-      - 3000:3000
+      - 3001:3000

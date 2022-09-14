@@ -1,18 +1,22 @@
 import * as S from "./Login.styles";
+import { ILoginUI } from "./Login.types";
 
-export default function LoginUI() {
+export default function LoginUI(props: ILoginUI) {
   return (
     <S.Body>
       <S.Wrapper>
         <S.Title>로그인</S.Title>
         <S.InputFullWrapper>
-          <S.InputFull placeholder="이메일" />
+          <S.InputFull placeholder="이메일" onChange={props.onChangeEmail} />
         </S.InputFullWrapper>
         <S.InputFullWrapper>
-          <S.InputFull placeholder="비밀번호" />
+          <S.InputFull
+            placeholder="비밀번호"
+            onChange={props.onChangePassword}
+          />
         </S.InputFullWrapper>
         <S.findPassword>비밀번호 찾기</S.findPassword>
-        <S.Btn>로그인</S.Btn>
+        <S.Btn onClick={props.onClickLogin}>로그인</S.Btn>
         <S.Naver>
           <S.BtnImg src={"/images/login/naver.svg"} />
           <S.BtnText>네이버 로그인</S.BtnText>

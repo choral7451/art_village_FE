@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import Slider from "react-slick";
 
 export const Banner = styled(Slider)`
-  width: 100%;
+  width: 70%;
 `;
 
 export const MainBannerSource = styled.img`

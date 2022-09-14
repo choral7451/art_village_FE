@@ -17,6 +17,12 @@ export const Image = styled.img`
   height: 50%;
 `;
 
+export const Level = styled.div`
+  padding-top: 10px;
+  font-size: 14px;
+  margin-left: 5px;
+`;
+
 export const Title = styled.div`
   display: flex;
   align-items: center;
@@ -26,8 +32,8 @@ export const Title = styled.div`
   height: 20%;
 `;
 
-export const Name = styled.div`
-  font-size: 16px;
+export const Price = styled.div`
+  font-size: 18px;
   margin-left: 5px;
   color: #7d7d7d;
   width: 100%;
@@ -42,15 +48,4 @@ export const RateWrapper = styled.div`
 export const Star = styled(Rate)`
   width: 100%;
   height: 100%;
-`;
-
-export const Tag = styled.div`
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
-  height: 10%;
-  padding: 0 10px;
-  width: fit-content;
-  border-radius: 10px;
-  background-color: hsl(321, 63%, 90%);
 `;
