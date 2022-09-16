@@ -20,8 +20,6 @@ export default function LoginContainer() {
     const { data } = await login({
       variables: { email, password },
     });
-
-    console.log(data.login);
   };
 
   return (
