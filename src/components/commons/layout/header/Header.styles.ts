@@ -4,7 +4,6 @@ import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
 export const Header = styled.div`
   width: 100vw;
   height: 240px;
-
   display: flex;
   flex-direction: column;
 `;
