@@ -9,7 +9,7 @@ export const Body = styled.div`
   width: 100%;
 `;
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 30%;
 `;
 
@@ -120,7 +120,7 @@ export const Arrow = styled.div`
   cursor: pointer;
 `;
 
-export const SignupBtn = styled.div`
+export const SignupBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,6 +128,7 @@ export const SignupBtn = styled.div`
   font-weight: bold;
   font-size: 16px;
   height: 50px;
+  width: 100%;
   border-radius: 15px;
   border: 1px solid #32c2b9;
   margin: 30px 0;
@@ -135,4 +136,13 @@ export const SignupBtn = styled.div`
     color: white;
     background-color: #427ed1;
   }
+`;
+
+export const ErrorMessage = styled.div`
+  display: flex;
+  align-items: center;
+  color: red;
+  font-weight: bold;
+  margin: 10px 0 10px 10px;
+  width: 100%;
 `;

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { MenuOutlined, SearchOutlined } from "@ant-design/icons";
+import { MenuOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
 
 export const Header = styled.div`
   width: 100vw;
@@ -38,6 +38,38 @@ export const LoginBtn = styled.div`
 `;
 
 export const SignupBtn = styled.div`
+  cursor: pointer;
+  font-weight: bold;
+  padding: 6px 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  border: 1px solid #427ed1;
+  color: white;
+  background-color: #427ed1;
+  :hover {
+    background-color: white;
+    color: black;
+  }
+`;
+
+export const LoginUserIncon = styled(UserOutlined)`
+  font-size: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+
+export const LoginUserName = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  padding-left: 20px;
+`;
+
+export const LoginUserText = styled.div`
+  font-size: 18px;
+  padding-right: 20px;
+`;
+
+export const LogoutBtn = styled.div`
   cursor: pointer;
   font-weight: bold;
   padding: 6px 20px;

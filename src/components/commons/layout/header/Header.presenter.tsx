@@ -6,12 +6,23 @@ export default function HeaderUI(props: IHeaderUI) {
     <S.Header>
       <S.HeaderTop>
         <S.HeaderTopContents>
-          <S.LoginBtn id="/login" onClick={props.onClickPush}>
-            로그인
-          </S.LoginBtn>
-          <S.SignupBtn id="/signup" onClick={props.onClickPush}>
-            회원가입
-          </S.SignupBtn>
+          {props.user ? (
+            <>
+              <S.LoginUserIncon />
+              <S.LoginUserName>{props.user.name}</S.LoginUserName>
+              <S.LoginUserText>님 환영합니다.</S.LoginUserText>
+              <S.LogoutBtn>로그아웃</S.LogoutBtn>
+            </>
+          ) : (
+            <>
+              <S.LoginBtn id="/login" onClick={props.onClickPush}>
+                로그인
+              </S.LoginBtn>
+              <S.SignupBtn id="/signup" onClick={props.onClickPush}>
+                회원가입
+              </S.SignupBtn>
+            </>
+          )}
         </S.HeaderTopContents>
       </S.HeaderTop>
       <S.HeaderMid>

@@ -1,40 +1,52 @@
+import InputComponent from "../../commons/inputs";
 import * as S from "./Signup.styles";
 import { ISignupUI } from "./Signup.types";
 
 export default function SignupUI(props: ISignupUI) {
   return (
     <S.Body>
-      <S.Wrapper>
+      <S.Wrapper onSubmit={props.handleSubmit(props.onClickSignup)}>
         <S.Title>회원가입</S.Title>
         <S.EmailWrapper>
           <S.EamilInputWrapper>
-            <S.EmailInput
+            <InputComponent
               placeholder="이메일을 입력해주세요."
-              onChange={props.onChangeEmail}
+              register={props.register("email")}
             />
           </S.EamilInputWrapper>
-          <S.CheckEmail>인증번호 전송</S.CheckEmail>
+          <S.CheckEmail onClick={props.onClickSendToken}>
+            인증번호 전송
+          </S.CheckEmail>
         </S.EmailWrapper>
+        <S.ErrorMessage>{props.formState.errors.email?.message}</S.ErrorMessage>
         <S.InputFullWrapper>
-          <S.InputFull
+          <InputComponent
             placeholder="이름을 입력해주세요."
-            onChange={props.onChangeName}
+            register={props.register("name")}
           />
         </S.InputFullWrapper>
+        <S.ErrorMessage>{props.formState.errors.name?.message}</S.ErrorMessage>
         <S.InputFullWrapper>
-          <S.InputFull
+          <InputComponent
             placeholder="비밀번호를 입력해주세요."
             type={"password"}
-            onChange={props.onChangePassword}
+            register={props.register("password")}
           />
         </S.InputFullWrapper>
+        <S.ErrorMessage>
+          {props.formState.errors.password?.message}
+        </S.ErrorMessage>
         <S.InputFullWrapper>
-          <S.InputFull
+          <InputComponent
             placeholder="비밀번호를 다시 입력해주세요."
             type={"password"}
+            register={props.register("passwordCheck")}
           />
         </S.InputFullWrapper>
-        <S.AgreeWrapper>
+        <S.ErrorMessage>
+          {props.formState.errors.passwordCheck?.message}
+        </S.ErrorMessage>
+        <S.AgreeWrapper style={{ marginTop: "20px" }}>
           <S.CheckBox type={"checkbox"} />
           <S.AgreeTitle>전체 동의</S.AgreeTitle>
         </S.AgreeWrapper>
@@ -52,7 +64,7 @@ export default function SignupUI(props: ISignupUI) {
           <S.CheckBox type={"checkbox"} />
           <S.AgreeTitle>(선택) 마케팅 수신 동의</S.AgreeTitle>
         </S.AgreeWrapper>
-        <S.SignupBtn onClick={props.onClickSignup}>회원가입</S.SignupBtn>
+        <S.SignupBtn>회원가입</S.SignupBtn>
       </S.Wrapper>
     </S.Body>
   );

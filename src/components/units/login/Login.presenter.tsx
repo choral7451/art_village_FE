@@ -13,6 +13,7 @@ export default function LoginUI(props: ILoginUI) {
           <S.InputFull
             placeholder="비밀번호"
             onChange={props.onChangePassword}
+            type="password"
           />
         </S.InputFullWrapper>
         <S.findPassword>비밀번호 찾기</S.findPassword>
