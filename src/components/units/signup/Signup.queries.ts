@@ -7,3 +7,15 @@ export const Signup = gql`
     )
   }
 `;
+
+export const SendToken = gql`
+  mutation sendToken($email: String!) {
+    sendToken(email: $email)
+  }
+`;
+
+export const CheckToken = gql`
+  mutation checkToken($token: String!) {
+    checkToken(token: $token)
+  }
+`;

@@ -49,6 +49,52 @@ export const CheckEmail = styled.button`
   height: 100%;
   border: 1px solid #32c2b9;
   cursor: pointer;
+  color: white;
+  background-color: #427ed1;
+  :disabled {
+    color: black;
+    background-color: white;
+  }
+  :hover {
+    color: black;
+    background-color: white;
+  }
+`;
+
+export const Timer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 11%;
+  border-radius: 15px;
+  font-size: 16px;
+  height: 100%;
+  border: 1px solid #32c2b9;
+  color: black;
+`;
+
+export const CheckToken = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 11%;
+  font-weight: bold;
+  font-size: 16px;
+  height: 100%;
+  border: 1px solid #32c2b9;
+  cursor: pointer;
+  color: white;
+  margin-left: 3%;
+  background-color: #427ed1;
+  :disabled {
+    color: black;
+    background-color: white;
+  }
+  :hover {
+    color: black;
+    background-color: white;
+  }
 `;
 
 export const InputFullWrapper = styled.div`
@@ -115,9 +161,15 @@ export const SignupBtn = styled.button`
   border-radius: 15px;
   border: 1px solid #32c2b9;
   margin: 30px 0;
-  :hover {
+  color: black;
+  background-color: white;
+  :disabled {
     color: white;
     background-color: #427ed1;
+  }
+  :hover {
+    color: black;
+    background-color: white;
   }
 `;
 

@@ -5,6 +5,7 @@ import { Login } from "./Login.queries";
 import { useRecoilState } from "recoil";
 import { AccessTokenState } from "../../../commons/store";
 import { useRouter } from "next/router";
+import { Modal } from "antd";
 
 export default function LoginContainer() {
   const [accessToken, setAccessToken] = useRecoilState(AccessTokenState);
@@ -24,13 +25,17 @@ export default function LoginContainer() {
   };
 
   const onClickLogin = async () => {
-    const { data } = await login({
-      variables: { email, password },
-    });
+    try {
+      const { data } = await login({
+        variables: { email, password },
+      });
 
-    setAccessToken(data.login);
+      setAccessToken(data.login);
 
-    router.push("/");
+      router.push("/");
+    } catch (error: any) {
+      Modal.error({ content: error.message });
+    }
   };
 
   return (

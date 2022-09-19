@@ -8,6 +8,7 @@ interface IInputProps {
   defaultValue?: string;
   readOnly?: boolean;
   register?: object;
+  value?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void | undefined;
 }
 
@@ -33,6 +34,7 @@ export default function InputComponent(props: IInputProps) {
       type={props?.type}
       readOnly={props?.readOnly}
       defaultValue={props?.defaultValue}
+      value={props?.value}
       {...props?.register}
     ></Input>
   );

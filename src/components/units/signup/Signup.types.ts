@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, RefObject } from "react";
 import {
   FieldValues,
   FormState,
@@ -8,14 +8,19 @@ import {
 } from "react-hook-form";
 
 export interface ISignupUI {
-  onClickSignup: () => void;
+  onClickSignup: (data: any) => void;
   onClickSendToken: () => void;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
   formState: FormState<FieldValues>;
   register: UseFormRegister<FieldValues>;
   watch: UseFormWatch<FieldValues>;
   emailError: String;
-  handleMouseEnter: () => void;
-  handleMouseLeave: () => void;
-  isHovering: Boolean;
+  onClickCheckBoxAll: (e: any) => void;
+  onClickCheckBox: (e: any) => void;
+  checkedAll: Boolean;
+  tokenInput: Boolean;
+  onChangeToken: (e: ChangeEvent<HTMLInputElement>) => void;
+  onClickCheckToken: () => void;
+  token: string;
+  timerTime: number;
 }
