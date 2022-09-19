@@ -12,30 +12,23 @@ export default function SignupContainer() {
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [name, setName] = useState("");
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
 
   const [signup] = useMutation(Signup);
 
-  const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    onClickSendToken();
-  };
-
-  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
-  };
-
   const onClickSignup = async () => {
-    await signup({
-      variables: { email, password, name },
-    });
-  };
-
-  const onClickSendToken = async () => {
-    !email ? setEmailError("이메일을 입력해 주세요.") : setEmailError("");
+    console.log("asdasd");
+    // await signup({
+    //   variables: { email, password, name },
+    // });
   };
 
   const schema = yup.object({
@@ -62,23 +55,28 @@ export default function SignupContainer() {
       .required("비밀번호를 다시 입력해주세요"),
   });
 
-  const { handleSubmit, register, formState } = useForm({
+  const { handleSubmit, register, formState, watch, getValues } = useForm({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
+  const onClickSendToken = async () => {
+    console.log(getValues("email"));
+  };
+
   formState.isValid;
   return (
     <SignupUI
-      onChangeEmail={onChangeEmail}
-      onChangePassword={onChangePassword}
-      onChangeName={onChangeName}
       onClickSignup={onClickSignup}
       onClickSendToken={onClickSendToken}
       handleSubmit={handleSubmit}
       register={register}
       formState={formState}
       emailError={emailError}
+      watch={watch}
+      handleMouseEnter={handleMouseEnter}
+      handleMouseLeave={handleMouseLeave}
+      isHovering={isHovering}
     />
   );
 }

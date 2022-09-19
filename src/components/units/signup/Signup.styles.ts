@@ -38,20 +38,7 @@ export const EamilInputWrapper = styled.div`
   border: 1px solid #32c2b9;
 `;
 
-export const EmailInput = styled.input`
-  width: 90%;
-  height: 100%;
-  font-size: 16px;
-  border: none;
-  :focus {
-    outline: none;
-  }
-  ::placeholder {
-    color: #32c2b9;
-  }
-`;
-
-export const CheckEmail = styled.div`
+export const CheckEmail = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,10 +49,6 @@ export const CheckEmail = styled.div`
   height: 100%;
   border: 1px solid #32c2b9;
   cursor: pointer;
-  :hover {
-    color: white;
-    background-color: #427ed1;
-  }
 `;
 
 export const InputFullWrapper = styled.div`

@@ -6,5 +6,6 @@ interface IUser {
 }
 export interface IHeaderUI {
   onClickPush: (e: MouseEvent<HTMLDivElement>) => void;
+  onClickLogout: () => void;
   user: IUser;
 }

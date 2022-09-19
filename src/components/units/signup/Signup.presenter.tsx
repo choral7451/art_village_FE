@@ -1,3 +1,4 @@
+import { useState } from "react";
 import InputComponent from "../../commons/inputs";
 import * as S from "./Signup.styles";
 import { ISignupUI } from "./Signup.types";
@@ -14,7 +15,23 @@ export default function SignupUI(props: ISignupUI) {
               register={props.register("email")}
             />
           </S.EamilInputWrapper>
-          <S.CheckEmail onClick={props.onClickSendToken}>
+          <S.CheckEmail
+            disabled={!/^\w+@\w+\.\w+/.test(props.watch("email"))}
+            style={
+              /^\w+@\w+\.\w+/.test(props.watch("email"))
+                ? {
+                    backgroundColor: props.isHovering ? "white" : "#427ed1",
+                    color: props.isHovering ? "black" : "white",
+                  }
+                : {
+                    backgroundColor: "white",
+                    color: "black",
+                  }
+            }
+            onMouseEnter={props.handleMouseEnter}
+            onMouseLeave={props.handleMouseLeave}
+            onClick={props.onClickSendToken}
+          >
             인증번호 전송
           </S.CheckEmail>
         </S.EmailWrapper>

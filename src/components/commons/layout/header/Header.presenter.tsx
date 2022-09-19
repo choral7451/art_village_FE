@@ -11,7 +11,7 @@ export default function HeaderUI(props: IHeaderUI) {
               <S.LoginUserIncon />
               <S.LoginUserName>{props.user.name}</S.LoginUserName>
               <S.LoginUserText>님 환영합니다.</S.LoginUserText>
-              <S.LogoutBtn>로그아웃</S.LogoutBtn>
+              <S.LogoutBtn onClick={props.onClickLogout}>로그아웃</S.LogoutBtn>
             </>
           ) : (
             <>
