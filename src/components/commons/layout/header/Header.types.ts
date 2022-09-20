@@ -5,7 +5,9 @@ interface IUser {
   email: string;
 }
 export interface IHeaderUI {
-  onClickPush: (e: MouseEvent<HTMLDivElement>) => void;
+  onClickPush: (url: string) => () => void;
   onClickLogout: () => void;
+  onClickSearch: (btn: string) => () => void;
   user: IUser;
+  searchState: Boolean;
 }

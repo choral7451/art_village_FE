@@ -1,3 +1,4 @@
+import Checkbox from "../../commons/checkBox";
 import InputComponent from "../../commons/inputs";
 import * as S from "./Signup.styles";
 import { ISignupUI } from "./Signup.types";

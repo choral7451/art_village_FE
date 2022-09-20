@@ -1,6 +1,7 @@
-import CoursesUI from "./Courses.presenter";
+import React from "react";
+import ScoresUI from "./Scores.presenter";
 
-export default function CoursesContainer() {
+export default function ScoresContainer() {
   const sideNavData = {
     title: "전체 강의",
     dataList: [
@@ -17,5 +18,5 @@ export default function CoursesContainer() {
     ],
   };
 
-  return <CoursesUI sideNavData={sideNavData} />;
+  return <ScoresUI sideNavData={sideNavData} />;
 }

@@ -1,9 +1,10 @@
-import { ChangeEvent, RefObject } from "react";
+import { ChangeEvent } from "react";
 import {
   FieldValues,
   FormState,
   UseFormHandleSubmit,
   UseFormRegister,
+  UseFormTrigger,
   UseFormWatch,
 } from "react-hook-form";
 

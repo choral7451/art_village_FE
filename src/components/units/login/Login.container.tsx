@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 import LoginUI from "./Login.presenter";
 import { Login } from "./Login.queries";
 import { useRecoilState } from "recoil";
@@ -24,7 +24,7 @@ export default function LoginContainer() {
     setPassword(e.target.value);
   };
 
-  const onClickLogin = async () => {
+  const loginReq = async () => {
     try {
       const { data } = await login({
         variables: { email, password },
@@ -37,12 +37,21 @@ export default function LoginContainer() {
       Modal.error({ content: error.message });
     }
   };
+  const onClickLogin = async () => {
+    loginReq();
+  };
+  const onKeyUp = async (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      loginReq();
+    }
+  };
 
   return (
     <LoginUI
       onChangeEmail={onChangeEmail}
       onChangePassword={onChangePassword}
       onClickLogin={onClickLogin}
+      onKeyUp={onKeyUp}
     />
   );
 }

@@ -1,6 +1,6 @@
-import CoursesUI from "./Courses.presenter";
+import AdminUI from "./Admin.presenter";
 
-export default function CoursesContainer() {
+export default function AdminContainer() {
   const sideNavData = {
     title: "전체 강의",
     dataList: [
@@ -17,5 +17,5 @@ export default function CoursesContainer() {
     ],
   };
 
-  return <CoursesUI sideNavData={sideNavData} />;
+  return <AdminUI sideNavData={sideNavData} />;
 }

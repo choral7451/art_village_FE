@@ -1,21 +1,13 @@
 import Card from "../../commons/productCard/Card.container";
+import SideNav from "../../commons/sideNav/SideNav.container";
 import * as S from "./Courses.styles";
+import { ICoursesUI } from "./Courses.types";
 
-export default function CoursesUI() {
+export default function CoursesUI(props: ICoursesUI) {
   return (
     <S.Body>
       <S.Wrapper>
-        <S.SideMenu>
-          <S.SideMenuAll>전체 강의</S.SideMenuAll>
-          <S.SideMenuCategory>
-            실용음악
-            <S.Arrow />
-          </S.SideMenuCategory>
-          <S.SideMenuCategory>
-            클래식
-            <S.Arrow />
-          </S.SideMenuCategory>
-        </S.SideMenu>
+        <SideNav sideNavData={props.sideNavData} />
         <S.Contents>
           <S.Category>전체</S.Category>
           <S.CardRow>

@@ -1,5 +1,11 @@
 import styled from "@emotion/styled";
-import { MenuOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  CloseOutlined,
+  SearchOutlined,
+  SettingOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { keyframes } from "@emotion/react";
 
 export const Header = styled.div`
   width: 100vw;
@@ -52,6 +58,12 @@ export const SignupBtn = styled.div`
   }
 `;
 
+export const SettingIcon = styled(SettingOutlined)`
+  font-size: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+
 export const LoginUserIncon = styled(UserOutlined)`
   font-size: 20px;
   margin-right: 10px;
@@ -96,6 +108,8 @@ export const HeaderMid = styled.div`
 
 export const HeaderMidContents = styled.div`
   display: flex;
+  align-items: center;
+
   height: 100%;
   width: 65%;
 `;
@@ -105,7 +119,6 @@ export const LogoWrapper = styled.div`
   align-items: center;
   justify-content: flex-start;
   height: 100%;
-  width: 60%;
 `;
 
 export const Logo = styled.div`
@@ -135,6 +148,38 @@ export const NavBtn = styled.div`
   }
 `;
 
+export const Open = keyframes`
+ 0% {
+    width: 0%;
+  }
+  100% {
+    width: 25%;
+  }
+`;
+
+export const SearchWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 50px;
+  border: 2px solid #eaeaea;
+  border-radius: 30px;
+  animation: ${Open} 1s 1 forwards;
+`;
+
+export const SearchKeyFrame = keyframes`
+  0%{
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 export const SearchIcon = styled(SearchOutlined)`
   display: flex;
   justify-content: flex-end;
@@ -142,10 +187,27 @@ export const SearchIcon = styled(SearchOutlined)`
   cursor: pointer;
   color: #2b2e32;
   font-size: 1.3rem;
-  width: 5%;
+  padding-right: 20px;
   :hover {
     color: #427ed1;
   }
+  animation: ${SearchKeyFrame} 1s 1 linear forwards;
+`;
+
+export const SearchInput = styled.input`
+  width: 60%;
+  border: none;
+  :focus {
+    outline: none;
+  }
+  animation: ${SearchKeyFrame} 1s 1 linear forwards;
+`;
+
+export const SearchExitBtn = styled(CloseOutlined)`
+  width: 5%;
+  padding: 0 20px;
+  cursor: pointer;
+  animation: ${SearchKeyFrame} 1s 1 linear forwards;
 `;
 
 export const HeaderBottom = styled.div`

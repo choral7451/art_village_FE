@@ -70,11 +70,18 @@ export default function SignupContainer() {
     tokenCheck: yup.boolean().oneOf([true]).required(),
   });
 
-  const { handleSubmit, register, formState, watch, getValues, setValue } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
+  const {
+    handleSubmit,
+    register,
+    formState,
+    watch,
+    getValues,
+    setValue,
+    trigger,
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
   const onClickSendToken = async () => {
     try {
@@ -111,10 +118,16 @@ export default function SignupContainer() {
       setValue("termsAgree", true);
       setValue("termsPrivacy", true);
       setValue("marketingAgreement", true);
+      trigger("termsAgree");
+      trigger("termsPrivacy");
+      trigger("marketingAgreement");
     } else {
       setValue("termsAgree", false);
       setValue("termsPrivacy", false);
       setValue("marketingAgreement", false);
+      trigger("termsAgree");
+      trigger("termsPrivacy");
+      trigger("marketingAgreement");
     }
   };
 
