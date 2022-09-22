@@ -1,12 +1,12 @@
-import { useMutation } from "@apollo/client";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { CheckToken, SendToken, Signup } from "./Signup.queries";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ChangeEvent, useState } from "react";
+import { useMutation } from "@apollo/client";
 import SignupUI from "./Signup.presenter";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { Modal } from "antd";
+import * as yup from "yup";
 
 export default function SignupContainer() {
   const router = useRouter();
@@ -83,6 +83,8 @@ export default function SignupContainer() {
     mode: "onChange",
   });
 
+  const { isDirty, isValid } = formState;
+
   const onClickSendToken = async () => {
     try {
       setToken("");
@@ -155,6 +157,7 @@ export default function SignupContainer() {
           content: "인증 완료",
           onOk() {
             setValue("tokenCheck", true);
+            trigger("tokenCheck");
             setTokenInput(false);
             setTimerTime(0);
           },

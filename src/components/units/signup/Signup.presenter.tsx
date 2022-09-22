@@ -1,4 +1,3 @@
-import Checkbox from "../../commons/checkBox";
 import InputComponent from "../../commons/inputs";
 import * as S from "./Signup.styles";
 import { ISignupUI } from "./Signup.types";
@@ -23,7 +22,6 @@ export default function SignupUI(props: ISignupUI) {
             인증번호 전송
           </S.CheckEmail>
         </S.EmailWrapper>
-
         <S.ErrorMessage>{props.formState.errors.email?.message}</S.ErrorMessage>
         <S.EmailWrapper
           style={
@@ -106,7 +104,11 @@ export default function SignupUI(props: ISignupUI) {
           />
           <S.AgreeTitle>(선택) 마케팅 수신 동의</S.AgreeTitle>
         </S.AgreeWrapper>
-        <S.SignupBtn disabled={props.formState.isValid}>회원가입</S.SignupBtn>
+        <S.SignupBtn
+          type="submit"
+          value="회원가입"
+          disabled={!props.formState.isDirty || !props.formState.isValid}
+        />
       </S.Wrapper>
     </S.Body>
   );

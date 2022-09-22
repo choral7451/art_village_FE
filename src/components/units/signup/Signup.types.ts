@@ -4,7 +4,6 @@ import {
   FormState,
   UseFormHandleSubmit,
   UseFormRegister,
-  UseFormTrigger,
   UseFormWatch,
 } from "react-hook-form";
 

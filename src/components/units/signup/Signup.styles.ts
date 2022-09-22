@@ -149,7 +149,7 @@ export const Arrow = styled.div`
   cursor: pointer;
 `;
 
-export const SignupBtn = styled.button`
+export const SignupBtn = styled.input`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -161,11 +161,11 @@ export const SignupBtn = styled.button`
   border-radius: 15px;
   border: 1px solid #32c2b9;
   margin: 30px 0;
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: #427ed1;
   :disabled {
-    color: white;
-    background-color: #427ed1;
+    color: black;
+    background-color: white;
   }
   :hover {
     color: black;
