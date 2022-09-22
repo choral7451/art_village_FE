@@ -16,6 +16,9 @@ export default function SideNavUI(props: ISideNav) {
                 }
               : {}
           }
+          onClick={
+            props.onClickPush ? props.onClickPush(element.router) : () => ""
+          }
         >
           {element.data}
         </S.SideMenuSubCategory>

@@ -9,6 +9,7 @@ export interface ISideNav {
       subDataList: { data: string; router: string }[];
     }[];
   };
-  categorySelect: any;
-  onClickCategory: (e: MouseEvent<HTMLDivElement>) => void;
+  categorySelect?: any;
+  onClickCategory?: (e: MouseEvent<HTMLDivElement>) => void;
+  onClickPush?: (path: string) => () => void;
 }

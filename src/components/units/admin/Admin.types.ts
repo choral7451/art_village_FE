@@ -7,4 +7,6 @@ export interface IAdminUI {
       subDataList: { data: string; router: string }[];
     }[];
   };
+
+  pathCheck: { member: boolean; courses: boolean; scores: boolean };
 }

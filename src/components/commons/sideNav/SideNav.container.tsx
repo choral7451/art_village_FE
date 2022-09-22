@@ -1,8 +1,11 @@
+import { useRouter } from "next/router";
 import { MouseEvent, useEffect, useState } from "react";
 import SideNavUI from "./SideNav.presenter";
 import { ISideNav } from "./SideNav.types";
 
 export default function SideNav(props: ISideNav) {
+  const router = useRouter();
+
   const categroryState: any = {};
   props.sideNavData.dataList.forEach((el) => {
     categroryState[el.id] = false;
@@ -18,11 +21,16 @@ export default function SideNav(props: ISideNav) {
       });
   };
 
+  const onClickPush = (path: string) => () => {
+    router.push(path);
+  };
+
   return (
     <SideNavUI
       sideNavData={props.sideNavData}
       onClickCategory={onClickCategory}
       categorySelect={categorySelect}
+      onClickPush={onClickPush}
     />
   );
 }

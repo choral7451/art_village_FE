@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { RightOutlined } from "@ant-design/icons";
 
 export const Body = styled.div`
   display: flex;
@@ -16,7 +15,6 @@ export const Wrapper = styled.div`
 
 export const Contents = styled.div`
   width: 80%;
-
   padding: 0 40px;
 `;
 export const Category = styled.div`
