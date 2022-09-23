@@ -10,9 +10,25 @@ export default function CoursesANDScoresUI(props: ICoursesAndScoresUI) {
         ) : (
           <S.Title>악보</S.Title>
         )}
-        <S.Btn>글쓰기</S.Btn>
       </S.ContentsTitle>
-      <S.RowWrapper>
+      <S.HeaderWrapper>
+        <S.ID>번호</S.ID>
+        <S.CategoryWrapper>분류</S.CategoryWrapper>
+        <S.ItemTitle>제목</S.ItemTitle>
+        <S.ItemWriter>이름</S.ItemWriter>
+        <S.ItemBtnWrapper>
+          {props.path === "courses" ? (
+            <S.Btn onClick={props.onClickPush("/admin/courses/write")}>
+              강의 등록
+            </S.Btn>
+          ) : (
+            <S.Btn onClick={props.onClickPush("/admin/scores/write")}>
+              악보 등록
+            </S.Btn>
+          )}
+        </S.ItemBtnWrapper>
+      </S.HeaderWrapper>
+      <S.ItemWrapper>
         <S.ID>1</S.ID>
         <S.CategoryWrapper>
           <S.Category>실용음악</S.Category>
@@ -24,7 +40,7 @@ export default function CoursesANDScoresUI(props: ICoursesAndScoresUI) {
           <S.Btn>수정</S.Btn>
           <S.Btn>삭제</S.Btn>
         </S.ItemBtnWrapper>
-      </S.RowWrapper>
+      </S.ItemWrapper>
     </S.Contents>
   );
 }

@@ -4,4 +4,5 @@ export interface ICoursesAndScores {
 
 export interface ICoursesAndScoresUI {
   path: string;
+  onClickPush: (path: string) => () => void;
 }

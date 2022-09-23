@@ -8,5 +8,9 @@ export interface IAdminUI {
     }[];
   };
 
-  pathCheck: { member: boolean; courses: boolean; scores: boolean };
+  pathCheck: {
+    member: boolean;
+    courses: { write: boolean; list: boolean; update: boolean };
+    scores: { write: boolean; list: boolean; update: boolean };
+  };
 }

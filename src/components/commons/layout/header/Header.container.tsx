@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import { SetStateAction, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
 import { AccessTokenState } from "../../../../commons/store";
 import { FETCH_LOGIN_USER } from "../../../units/home/Home.queries";
 import HeaderUI from "./Header.presenter";

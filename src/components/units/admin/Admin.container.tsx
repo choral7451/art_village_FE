@@ -4,19 +4,40 @@ import AdminUI from "./Admin.presenter";
 
 export default function AdminContainer() {
   const router = useRouter();
-  const path = router.pathname.replaceAll("/", "").replace("admin", "");
+  const path = router.pathname.replace("/", "").split("/");
 
   const [pathCheck, setPathCheck] = useState({
-    courses: false,
-    scores: false,
+    courses: {
+      list: false,
+      write: false,
+      update: false,
+    },
+    scores: {
+      list: false,
+      write: false,
+      update: false,
+    },
     member: false,
   });
 
   useEffect(() => {
-    setPathCheck({
-      ...pathCheck,
-      [path]: true,
-    });
+    if (path.length === 2) {
+      setPathCheck({
+        ...pathCheck,
+        [path[1]]: {
+          ...pathCheck.courses,
+          list: true,
+        },
+      });
+    } else {
+      setPathCheck({
+        ...pathCheck,
+        [path[1]]: {
+          ...pathCheck.courses,
+          [path[2]]: true,
+        },
+      });
+    }
   }, []);
 
   const sideNavData = {
