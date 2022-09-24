@@ -83,8 +83,6 @@ export default function SignupContainer() {
     mode: "onChange",
   });
 
-  const { isDirty, isValid } = formState;
-
   const onClickSendToken = async () => {
     try {
       setToken("");

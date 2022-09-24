@@ -2,6 +2,24 @@ import * as S from "./Styles";
 import { ICoursesAndScoresUI } from "./Types";
 
 export default function CoursesANDScoresUI(props: ICoursesAndScoresUI) {
+  const data = props.lecture?.map((el) => {
+    return (
+      <S.ItemWrapper>
+        <S.ID>{el.id}</S.ID>
+        <S.CategoryWrapper>
+          <S.Category>{el.category.name}</S.Category>
+          <S.SubCategory>{el.subCategory.name}</S.SubCategory>
+        </S.CategoryWrapper>
+        <S.ItemTitle>{el.title}</S.ItemTitle>
+        <S.ItemWriter>{el.lecturer}</S.ItemWriter>
+        <S.ItemBtnWrapper>
+          <S.Btn>수정</S.Btn>
+          <S.Btn>삭제</S.Btn>
+        </S.ItemBtnWrapper>
+      </S.ItemWrapper>
+    );
+  });
+
   return (
     <S.Contents>
       <S.ContentsTitle>
@@ -41,6 +59,7 @@ export default function CoursesANDScoresUI(props: ICoursesAndScoresUI) {
           <S.Btn>삭제</S.Btn>
         </S.ItemBtnWrapper>
       </S.ItemWrapper>
+      {props.path === "courses" ? data : ""}
     </S.Contents>
   );
 }

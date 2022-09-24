@@ -8,10 +8,13 @@ export default function UnitUI() {
         <S.VideoContents>
           <S.VideoBorder>
             <video
-              src="https://storage.googleapis.com/shaki--bucket/a.mp4"
+              src="https://storage.cloud.google.com/art_village_bucket/a.mp4"
               width="100%"
               height="100%"
               controlsList="nodownload"
+              onContextMenu={(e) => {
+                e.preventDefault();
+              }}
               controls
             ></video>
           </S.VideoBorder>
