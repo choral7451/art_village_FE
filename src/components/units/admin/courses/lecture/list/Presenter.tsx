@@ -1,17 +1,18 @@
 import * as S from "./Styles";
 import { ICoursesAndScoresUI } from "./Types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CoursesANDScoresUI(props: ICoursesAndScoresUI) {
   const data = props.lecture?.map((el) => {
     return (
-      <S.ItemWrapper>
+      <S.ItemWrapper key={uuidv4()}>
         <S.ID>{el.id}</S.ID>
         <S.CategoryWrapper>
           <S.Category>{el.category.name}</S.Category>
           <S.SubCategory>{el.subCategory.name}</S.SubCategory>
         </S.CategoryWrapper>
         <S.ItemTitle>{el.title}</S.ItemTitle>
-        <S.ItemWriter>{el.lecturer}</S.ItemWriter>
+        <S.ItemWriter>{el.lecturer.name}</S.ItemWriter>
         <S.ItemBtnWrapper>
           <S.Btn>수정</S.Btn>
           <S.Btn>삭제</S.Btn>
@@ -36,7 +37,7 @@ export default function CoursesANDScoresUI(props: ICoursesAndScoresUI) {
         <S.ItemWriter>이름</S.ItemWriter>
         <S.ItemBtnWrapper>
           {props.path === "courses" ? (
-            <S.Btn onClick={props.onClickPush("/admin/courses/write")}>
+            <S.Btn onClick={props.onClickPush("/admin/courses/lecture/write")}>
               강의 등록
             </S.Btn>
           ) : (

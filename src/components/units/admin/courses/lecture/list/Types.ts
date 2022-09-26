@@ -7,7 +7,7 @@ export interface ICoursesAndScoresUI {
   onClickPush: (path: string) => () => void;
   lecture: {
     id: number;
-    lecturer: string;
+    lecturer: { name: string };
     title: string;
     category: { name: string };
     subCategory: { name: string };

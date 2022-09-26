@@ -60,6 +60,8 @@ export const Email = styled.div`
   padding-left: 40px;
 `;
 
+export const Phone = styled.div``;
+
 export const Membership = styled.div`
   width: 15%;
   display: flex;

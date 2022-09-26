@@ -18,4 +18,19 @@ export interface IAdminCourseWriteUI {
   subCategoryValue: string;
   subCategoryArr: { name: string }[];
   setValue: any;
+  onChangeTextArea: (data: string) => void;
+  modules: any;
+  lecturerSearchFlag: boolean;
+  onClickSearch: () => void;
+  onChangeLecturerSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  onChangeSearchValue: (e: ChangeEvent<HTMLInputElement>) => void;
+  search: boolean;
+  lecturerInfo: {
+    email: string;
+    id: number;
+    image: string;
+    name: string;
+    phone: string;
+    profile: string;
+  }[];
 }

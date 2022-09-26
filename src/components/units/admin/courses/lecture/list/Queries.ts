@@ -4,7 +4,9 @@ export const FETCH_LECTURE = gql`
   query {
     fetchLecture {
       id
-      lecturer
+      lecturer {
+        name
+      }
       title
       category {
         name

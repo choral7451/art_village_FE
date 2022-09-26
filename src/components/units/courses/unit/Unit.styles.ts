@@ -55,18 +55,6 @@ export const Title = styled.div`
   font-weight: bold;
 `;
 
-// export const SubTitle = styled.div`
-//   display: flex;
-//   align-items: center;
-//   padding: 50px 20px 10px 10px;
-//   font-size: 30px;
-//   border-bottom: 3px solid #eaeaea;
-// `;
-
-// export const DescriptionPlayIcon = styled(PlayCircleOutlined)`
-//   padding-right: 0px;
-// `;
-
 export const Star = styled(Rate)`
   width: 100%;
   font-size: 40px;
@@ -90,9 +78,9 @@ export const Lecturer = styled.div`
   padding-left: 20px;
 `;
 
-export const VideoList = styled.div`
+export const ContentWrapper = styled.div`
   width: 70%;
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 50px;
   border: 2px solid #eaeaea;
 `;
@@ -144,3 +132,32 @@ export const PlayTime = styled.div`
 export const ClockIcon = styled(ClockCircleOutlined)`
   width: 5%;
 `;
+
+export const NavBar = styled.div`
+  width: 70%;
+  padding: 40px 0 10px 0;
+  display: flex;
+`;
+
+export const NavBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  height: 50px;
+  width: 160px;
+  border-radius: 15px;
+  border: 2px solid #eaeaea;
+  margin-right: 20px;
+  :hover {
+    background-color: #eaeaea;
+  }
+`;
+
+export const profileImage = styled.img`
+  width: 30%;
+`;
+
+export const profileText = styled.div``;

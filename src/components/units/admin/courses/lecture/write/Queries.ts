@@ -6,6 +6,7 @@ export const UPLOAD_FILE = gql`
     $title: String!
     $category: String!
     $subCategory: String!
+    $subTitle: [String!]!
     $files: [Upload!]!
     $description: String!
   ) {
@@ -15,6 +16,7 @@ export const UPLOAD_FILE = gql`
         title: $title
         category: $category
         subCategory: $subCategory
+        subTitle: $subTitle
         files: $files
         description: $description
       }

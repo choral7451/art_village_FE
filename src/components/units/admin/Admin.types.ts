@@ -7,10 +7,10 @@ export interface IAdminUI {
       subDataList: { data: string; router: string }[];
     }[];
   };
-
-  pathCheck: {
-    member: boolean;
-    courses: { write: boolean; list: boolean; update: boolean };
-    scores: { write: boolean; list: boolean; update: boolean };
-  };
+  pathCheck: any;
+  // pathCheck: {
+  //   member: boolean;
+  //   courses: { write: boolean; list: boolean; update: boolean };
+  //   scores: { write: boolean; list: boolean; update: boolean };
+  // };
 }

@@ -95,6 +95,11 @@ export default function SignupContainer() {
       Modal.success({
         content: "인증번호가 전송되었습니다.",
         onOk() {
+          if (timerTime !== 180) {
+            setTimerTime(180);
+            return;
+          }
+
           const timer = setInterval(() => {
             setTimerTime((prev) => {
               prev - 1;

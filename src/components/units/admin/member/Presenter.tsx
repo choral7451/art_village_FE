@@ -21,7 +21,7 @@ export default function AdminMemberUI(props: IAdminMemberUI) {
         <S.Title>회원</S.Title>
         <S.SearchWrapper>
           <S.SearchIcon />
-          <S.SearchInput placeholder="검색어를 입력해주세요." />
+          <S.SearchInput placeholder="이름을 입력해주세요." />
         </S.SearchWrapper>
       </S.ContentsTitle>
       <S.HeaderWrapper>

@@ -8,33 +8,40 @@ export default function AdminContainer() {
 
   const [pathCheck, setPathCheck] = useState({
     courses: {
-      list: false,
-      write: false,
-      update: false,
+      lecture: {
+        list: false,
+        write: false,
+      },
+      lecturer: {
+        list: false,
+        write: false,
+      },
     },
     scores: {
       list: false,
       write: false,
       update: false,
     },
-    member: false,
+    member: {
+      list: false,
+    },
   });
 
   useEffect(() => {
-    if (path.length === 2) {
+    if (path.length === 3) {
       setPathCheck({
         ...pathCheck,
         [path[1]]: {
-          ...pathCheck.courses,
-          list: true,
+          [path[2]]: true,
         },
       });
-    } else {
+    } else if (path.length === 4) {
       setPathCheck({
         ...pathCheck,
         [path[1]]: {
-          ...pathCheck.courses,
-          [path[2]]: true,
+          [path[2]]: {
+            [path[3]]: true,
+          },
         },
       });
     }
@@ -46,17 +53,20 @@ export default function AdminContainer() {
       {
         id: "member",
         data: "회원",
-        subDataList: [{ data: "회원 목록", router: "/admin/member" }],
+        subDataList: [{ data: "회원 목록", router: "/admin/member/list" }],
       },
       {
         id: "courses",
         data: "강의",
-        subDataList: [{ data: "강의 목록", router: "/admin/courses" }],
+        subDataList: [
+          { data: "강의 목록", router: "/admin/courses/lecture/list" },
+          { data: "강사 목록", router: "/admin/courses/lecturer/list" },
+        ],
       },
       {
         id: "scores",
         data: "악보",
-        subDataList: [{ data: "악보 목록", router: "/admin/scores" }],
+        subDataList: [{ data: "악보 목록", router: "/admin/scores/list" }],
       },
       {
         id: "payment",

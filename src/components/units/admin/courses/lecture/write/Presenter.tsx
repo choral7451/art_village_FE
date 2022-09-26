@@ -1,8 +1,13 @@
 import * as S from "./Styles";
 import { IAdminCourseWriteUI } from "./Types";
 import { v4 as uuidv4 } from "uuid";
+import LecturerCard from "../../../../../commons/lecturerCard/Container";
 
 export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
+  const lecturer = props.lecturerInfo.map((el) => {
+    return <LecturerCard key={uuidv4()} data={el} />;
+  });
+
   const category = props.category?.map((el) => {
     return (
       <option key={uuidv4()} value={el.name}>
@@ -29,6 +34,7 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
             <S.LectureTitleInput
               placeholder="제목을 입력해주세요."
               spellCheck="false"
+              {...props.register(`subTitle${i + 1}`)}
             />
           </S.RowWrapper>
           <S.RowWrapper>
@@ -53,7 +59,6 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
           />
         </S.Loading>
       </S.LoadingWrapper>
-
       <S.Contents
         onSubmit={props.handleSubmit(props.submitWrite)}
         style={props.loading ? { display: "none" } : { display: "initial" }}
@@ -61,16 +66,18 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
         <S.ContentsTitle>
           <S.Title>강의 등록</S.Title>
         </S.ContentsTitle>
-        <S.Header>
-          <S.RowWrapper>
-            <S.Text>강사 : </S.Text>
-            <S.LecturerInput
-              placeholder="이름을 입력해주세요."
-              spellCheck="false"
-              {...props.register("lecturer")}
+        <S.HeaderWrapper>
+          <S.SearchWrapper>
+            <S.SearchIcon onClick={props.onClickSearch} />
+            <S.SearchInput
+              placeholder="강사이름을 입력해주세요."
+              onChange={props.onChangeSearchValue}
             />
-          </S.RowWrapper>
-          <S.Err>{props.formState.errors.name?.message}</S.Err>
+          </S.SearchWrapper>
+          {props.search ? lecturer : null}
+        </S.HeaderWrapper>
+
+        <S.Mid>
           <S.RowWrapper>
             <S.Text>강의 제목 : </S.Text>
             <S.LectureTitleInput
@@ -92,7 +99,6 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
             <S.Text>소분류 : </S.Text>
             <S.Select
               onChange={props.onChangeSubCategory}
-              // value={props.subCategoryValue}
               {...props.register("subCategory")}
             >
               <option>분류</option>
@@ -104,7 +110,7 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
             <S.Upload type="file" {...props.register("image")} />
           </S.RowWrapper>
           <S.RowWrapper>
-            <S.Text>강의 미리보기 : </S.Text>
+            <S.Text>강의 소개 : </S.Text>
             <S.Upload type="file" {...props.register(`file0`)} />
           </S.RowWrapper>
           <S.RowWrapper>
@@ -119,13 +125,13 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
               확인
             </S.LectureCount>
           </S.RowWrapper>
-        </S.Header>
+        </S.Mid>
         <S.Body>
           <S.RowWrapper>
             <S.Text>설명 : </S.Text>
-            <S.DescriptionArea
-              {...props.register("description")}
-              spellCheck="false"
+            <S.TextArea
+              onChange={props.onChangeTextArea}
+              modules={props.modules}
             />
             <S.Err>{props.formState.errors.description?.message}</S.Err>
           </S.RowWrapper>
