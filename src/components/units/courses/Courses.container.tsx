@@ -1,6 +1,13 @@
+import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
 import CoursesUI from "./Courses.presenter";
+import { FETCH_LECTURE } from "./Courses.queries";
 
 export default function CoursesContainer() {
+  const router = useRouter();
+
+  const lecture = useQuery(FETCH_LECTURE);
+
   const sideNavData = {
     title: "전체 강의",
     dataList: [
@@ -17,5 +24,15 @@ export default function CoursesContainer() {
     ],
   };
 
-  return <CoursesUI sideNavData={sideNavData} />;
+  const onClickPush = (path: string) => () => {
+    router.push(path);
+  };
+
+  return (
+    <CoursesUI
+      sideNavData={sideNavData}
+      lecture={lecture.data?.fetchLecture}
+      onClickPush={onClickPush}
+    />
+  );
 }

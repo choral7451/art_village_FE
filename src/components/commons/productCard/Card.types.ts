@@ -1,5 +1,10 @@
-import { MouseEvent } from "react";
+import { MouseEvent, MouseEventHandler } from "react";
 
-export interface ICardUI {
-  onClickPush: (e: MouseEvent<HTMLDivElement>) => void;
+export interface ICard {
+  id: number;
+  image: string;
+  name: string;
+  tag?: string;
+  title: string;
+  onClick: (path: string) => MouseEventHandler<HTMLDivElement>;
 }

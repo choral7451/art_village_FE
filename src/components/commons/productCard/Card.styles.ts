@@ -14,7 +14,7 @@ export const Wrapper = styled.div`
 
 export const Image = styled.img`
   width: 100%;
-  height: 50%;
+  height: 40%;
 `;
 
 export const Title = styled.div`
@@ -23,7 +23,7 @@ export const Title = styled.div`
   margin-left: 5px;
   font-size: 20px;
   width: 100%;
-  height: 20%;
+  height: 25%;
 `;
 
 export const Name = styled.div`
@@ -44,13 +44,7 @@ export const Star = styled(Rate)`
   height: 100%;
 `;
 
-export const Tag = styled.div`
-  margin-left: 5px;
+export const TagWrapper = styled.div`
   display: flex;
-  align-items: center;
-  height: 10%;
-  padding: 0 10px;
-  width: fit-content;
-  border-radius: 10px;
-  background-color: hsl(321, 63%, 90%);
+  overflow: hidden;
 `;

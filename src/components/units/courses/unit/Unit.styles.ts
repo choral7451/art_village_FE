@@ -42,7 +42,8 @@ export const VideoDescription = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 100px;
+  padding-left: 50px;
+  width: 44%;
 `;
 
 export const Category = styled.div`
@@ -55,15 +56,16 @@ export const Title = styled.div`
   font-weight: bold;
 `;
 
-export const Star = styled(Rate)`
-  width: 100%;
-  font-size: 40px;
-  padding-top: 20px;
+export const subTitle = styled.div`
+  padding: 40px 0 40px 20px;
+  font-size: 30px;
 `;
 
 export const LecturerWrapper = styled.div`
   display: flex;
-  padding-top: 30px;
+  align-items: center;
+  padding: 20px 0;
+  width: 100%;
 `;
 
 export const LecturerIcon = styled(UserOutlined)`
@@ -78,11 +80,25 @@ export const Lecturer = styled.div`
   padding-left: 20px;
 `;
 
+export const Star = styled(Rate)`
+  font-size: 30px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+`;
 export const ContentWrapper = styled.div`
   width: 70%;
   margin-top: 10px;
   padding: 50px;
   border: 2px solid #eaeaea;
+`;
+
+export const ProfileWrapper = styled.div`
+  width: 70%;
+  margin-top: 10px;
+  border: 2px solid #eaeaea;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const LectureTitleText = styled.div`
@@ -155,9 +171,3 @@ export const NavBtn = styled.button`
     background-color: #eaeaea;
   }
 `;
-
-export const profileImage = styled.img`
-  width: 30%;
-`;
-
-export const profileText = styled.div``;

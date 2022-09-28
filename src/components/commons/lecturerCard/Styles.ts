@@ -26,7 +26,7 @@ export const LecturerSelectText = styled.div`
 `;
 
 export const LecturerWrapper = styled.div`
-  margin: 40px 0 0 40px;
+  margin: 40px 0 40px 0;
   padding: 20px;
   width: 90%;
   border: 2px solid #e4e4e4;
@@ -35,7 +35,6 @@ export const LecturerWrapper = styled.div`
 
 export const LecturerTextWrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
 `;
 export const LecturerTextLeftWrapper = styled.div`

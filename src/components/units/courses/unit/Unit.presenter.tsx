@@ -1,14 +1,26 @@
 import * as S from "./Unit.styles";
 import { IUnitUI } from "./Unit.types";
+import { v4 as uuidv4 } from "uuid";
+import LecturerCard from "../../../commons/lecturerCard/Container";
 
 export default function UnitUI(props: IUnitUI) {
+  const lecture = props.data?.video.map((el) => {
+    return (
+      <S.Lecture key={uuidv4()} onClick={props.onChangeVideo(el.url)}>
+        <S.PlayIcon />
+        <S.LectureTitle>{el.title}</S.LectureTitle>
+        <S.ClockIcon />
+        <S.PlayTime>03:22</S.PlayTime>
+      </S.Lecture>
+    );
+  });
   return (
     <S.Body>
       <S.VideoWrapper>
         <S.VideoContents>
           <S.VideoBorder>
             <video
-              src="https://storage.cloud.google.com/art_village_bucket/a.mp4"
+              src={`https://storage.cloud.google.com/${props.video}`}
               width="100%"
               height="100%"
               controlsList="nodownload"
@@ -19,12 +31,15 @@ export default function UnitUI(props: IUnitUI) {
             ></video>
           </S.VideoBorder>
           <S.VideoDescription>
-            <S.Category>실용음악 {">"} 드럼</S.Category>
-            <S.Title>드럼 초보탈출</S.Title>
-            <S.Star value={5} />
+            <S.Category>
+              {props.data?.category.name} {">"} {props.data?.subCategory.name}
+            </S.Category>
+            <S.Title>{props.data?.title}</S.Title>
+            <S.subTitle>{props.subTitle}</S.subTitle>
             <S.LecturerWrapper>
               <S.LecturerIcon />
-              <S.Lecturer>최성수</S.Lecturer>
+              <S.Lecturer>{props.data?.lecturer.name}</S.Lecturer>
+              <S.Star value={5} disabled />
             </S.LecturerWrapper>
           </S.VideoDescription>
         </S.VideoContents>
@@ -44,6 +59,12 @@ export default function UnitUI(props: IUnitUI) {
         >
           프로필
         </S.NavBtn>
+        <S.NavBtn
+          style={props.nav === "feedback" ? { backgroundColor: "#eaeaea" } : {}}
+          onClick={props.onClickNavBtn("feedback")}
+        >
+          수강평(1)
+        </S.NavBtn>
       </S.NavBar>
       {props.nav === "education" ? (
         <S.ContentWrapper>
@@ -52,31 +73,15 @@ export default function UnitUI(props: IUnitUI) {
             <S.InfoWrapper>
               목록<S.LectureInfo>25 강의 4시간19분</S.LectureInfo>
             </S.InfoWrapper>
-            <S.Lecture>
-              <S.PlayIcon />
-              <S.LectureTitle>1. 더블 스트록</S.LectureTitle>
-              <S.ClockIcon />
-              <S.PlayTime>03:22</S.PlayTime>
-            </S.Lecture>
-            <S.Lecture>
-              <S.PlayIcon />
-              <S.LectureTitle>2. 더블 스트록</S.LectureTitle>
-              <S.ClockIcon />
-              <S.PlayTime>03:22</S.PlayTime>
-            </S.Lecture>
-            <S.Lecture>
-              <S.PlayIcon />
-              <S.LectureTitle>3. 더블 스트록</S.LectureTitle>
-              <S.ClockIcon />
-              <S.PlayTime>03:22</S.PlayTime>
-            </S.Lecture>
+            {lecture}
           </S.List>
         </S.ContentWrapper>
-      ) : (
-        <S.ContentWrapper>
-          <S.profileImage src="/images/증명사진.jpg" />
-        </S.ContentWrapper>
-      )}
+      ) : null}
+      {props.nav === "profile" ? (
+        <S.ProfileWrapper>
+          <LecturerCard type="basic" data={props.data.lecturer} />
+        </S.ProfileWrapper>
+      ) : null}
     </S.Body>
   );
 }

@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, MouseEvent } from "react";
 import { FieldValues, UseFormHandleSubmit } from "react-hook-form";
 
 export interface IAdminCourseWriteUI {
@@ -6,6 +6,11 @@ export interface IAdminCourseWriteUI {
   makeLecture?: Number;
   onClickLectureMake?: () => void;
   submitWrite: (data: any) => void;
+  tagInput: string;
+  tagArr: string[];
+  onClickTag: () => void;
+  onClickTagDelete: (e: MouseEvent<HTMLButtonElement>) => void;
+  onChangeTag: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeCategory?: (e: ChangeEvent<HTMLSelectElement>) => void;
   onChangeSubCategory?: (e: ChangeEvent<HTMLSelectElement>) => void;
   onChangeLectureCount?: (e: ChangeEvent<HTMLInputElement>) => void;

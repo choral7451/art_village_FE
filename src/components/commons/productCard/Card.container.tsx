@@ -1,12 +1,15 @@
-import { useRouter } from "next/router";
-import { MouseEvent } from "react";
 import CardUI from "./Card.presenter";
+import { ICard } from "./Card.types";
 
-export default function Card() {
-  const router = useRouter();
-
-  const onClickPush = (e: MouseEvent<HTMLDivElement>) => {
-    if (e.target instanceof Element) router.push(e.target.id);
-  };
-  return <CardUI onClickPush={onClickPush} />;
+export default function Card(props: ICard) {
+  return (
+    <CardUI
+      id={props.id}
+      image={props.image}
+      tag={props.tag}
+      name={props.name}
+      title={props.title}
+      onClick={props.onClick}
+    />
+  );
 }

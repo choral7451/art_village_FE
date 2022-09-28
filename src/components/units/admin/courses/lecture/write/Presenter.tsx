@@ -2,8 +2,20 @@ import * as S from "./Styles";
 import { IAdminCourseWriteUI } from "./Types";
 import { v4 as uuidv4 } from "uuid";
 import LecturerCard from "../../../../../commons/lecturerCard/Container";
+import Tag from "../../../../../commons/tag/Container";
 
 export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
+  const tag = props.tagArr.map((el) => {
+    return (
+      <Tag
+        key={uuidv4()}
+        text={el}
+        type={"delete"}
+        click={props.onClickTagDelete}
+      />
+    );
+  });
+
   const lecturer = props.lecturerInfo.map((el) => {
     return (
       <LecturerCard
@@ -123,6 +135,23 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
           <S.RowWrapper>
             <S.Text>강의 소개 : </S.Text>
             <S.Upload type="file" {...props.register(`file0`)} />
+          </S.RowWrapper>
+          <S.RowWrapper>
+            <S.Text>태그 : </S.Text>
+            <S.LectureCountInput
+              placeholder="태그를 입력해주세요."
+              spellCheck="false"
+              onChange={props.onChangeTag}
+              value={props.tagInput}
+            />
+            <S.LectureCount
+              type="button"
+              onClick={props.onClickTag}
+              style={{ marginRight: "30px" }}
+            >
+              확인
+            </S.LectureCount>
+            {props.tagArr.length >= 0 ? tag : null}
           </S.RowWrapper>
           <S.Err>{props.errors.file0?.message}</S.Err>
           <S.RowWrapper>

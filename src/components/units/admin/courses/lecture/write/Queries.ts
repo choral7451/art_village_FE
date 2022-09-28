@@ -4,6 +4,7 @@ export const CREATE_LECTURE = gql`
   mutation createLecture(
     $lecturer: Float!
     $title: String!
+    $tag: String
     $category: Float!
     $subCategory: Float!
     $subTitle: [String!]!
@@ -14,6 +15,7 @@ export const CREATE_LECTURE = gql`
       createLectureInput: {
         lecturer: $lecturer
         title: $title
+        tag: $tag
         category: $category
         subCategory: $subCategory
         subTitle: $subTitle

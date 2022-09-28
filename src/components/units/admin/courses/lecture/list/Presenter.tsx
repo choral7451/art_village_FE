@@ -47,19 +47,6 @@ export default function CoursesANDScoresUI(props: ICoursesAndScoresUI) {
           )}
         </S.ItemBtnWrapper>
       </S.HeaderWrapper>
-      <S.ItemWrapper>
-        <S.ID>1</S.ID>
-        <S.CategoryWrapper>
-          <S.Category>실용음악</S.Category>
-          <S.SubCategory>드럼</S.SubCategory>
-        </S.CategoryWrapper>
-        <S.ItemTitle>드럼 초보 탈출기</S.ItemTitle>
-        <S.ItemWriter>최성수</S.ItemWriter>
-        <S.ItemBtnWrapper>
-          <S.Btn>수정</S.Btn>
-          <S.Btn>삭제</S.Btn>
-        </S.ItemBtnWrapper>
-      </S.ItemWrapper>
       {props.path === "courses" ? data : ""}
     </S.Contents>
   );

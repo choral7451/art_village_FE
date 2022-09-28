@@ -1,5 +1,13 @@
 import { MouseEvent } from "react";
 
 export interface IHomeUI {
-  onClickPush: (e: MouseEvent<HTMLDivElement>) => void;
+  onClickPush: (path: string) => () => void;
+  lecture: {
+    image: string;
+    title: string;
+    lecturer: {
+      name: string;
+    };
+    tag: string;
+  };
 }

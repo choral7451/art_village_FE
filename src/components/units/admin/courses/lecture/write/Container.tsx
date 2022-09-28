@@ -1,6 +1,6 @@
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import AdminCourseWriteUI from "./Presenter";
 import { CREATE_LECTURE, FETCH_CATEGORY } from "./Queries";
@@ -22,6 +22,8 @@ export default function AdminCourseWrite() {
   const [search, setSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const [selectNum, setSelectNum] = useState("");
+  const [tagInput, setTagInput] = useState("");
+  const [tagArr, setTagArr] = useState([]);
   const [lecturerInfo, setLecturerInfo] = useState([
     {
       id: 0,
@@ -43,6 +45,27 @@ export default function AdminCourseWrite() {
     } else {
       setLecturerSearchFlag(true);
     }
+  };
+
+  const onChangeTag = (e: ChangeEvent<HTMLInputElement>) => {
+    setTagInput(e.target.value);
+  };
+
+  const onClickTag = () => {
+    if (tagArr.length >= 2) {
+      Modal.error({ content: `태그는 2개까지만 입력해주세요.` });
+      return;
+    }
+    setTagArr([...tagArr, tagInput]);
+    setTagInput("");
+  };
+
+  const onClickTagDelete = (e: MouseEvent<HTMLButtonElement>) => {
+    const tagDeleteArr = tagArr.filter(
+      (el) => el !== e.target.className.split(" ")[0]
+    );
+
+    setTagArr(tagDeleteArr);
   };
 
   const onChangeCategory = async (e: ChangeEvent<HTMLSelectElement>) => {
@@ -159,6 +182,7 @@ export default function AdminCourseWrite() {
         variables: {
           files,
           subTitle,
+          tag: tagArr.join(","),
           category: data.category,
           subCategory: data.subCategory,
           lecturer: Number(selectNum),
@@ -174,6 +198,7 @@ export default function AdminCourseWrite() {
         },
       });
     } catch (error: any) {
+      setLoading(false);
       Modal.error({ content: error.message });
     }
   };
@@ -250,8 +275,13 @@ export default function AdminCourseWrite() {
     <AdminCourseWriteUI
       lectureCount={lectureCount}
       makeLecture={makeLecture}
+      onClickTag={onClickTag}
+      tagInput={tagInput}
+      tagArr={tagArr}
       onClickLectureMake={onClickLectureMake}
+      onClickTagDelete={onClickTagDelete}
       onChangeLectureCount={onChangeLectureCount}
+      onChangeTag={onChangeTag}
       submitWrite={submitWrite}
       handleSubmit={handleSubmit}
       errors={errors}

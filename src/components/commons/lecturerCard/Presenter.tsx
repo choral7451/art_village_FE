@@ -1,7 +1,7 @@
 import * as S from "./Styles";
-import { ILecturerCardUI } from "./Types";
+import { ILecturer } from "./Types";
 
-export default function LecturerCardUI(props: ILecturerCardUI) {
+export default function LecturerCardUI(props: ILecturer) {
   return (
     <>
       <S.LecturerWrapper>
@@ -9,17 +9,21 @@ export default function LecturerCardUI(props: ILecturerCardUI) {
           src={`https://storage.cloud.google.com/${props.data.image}`}
         />
         <S.LecturerInfoWrapper>
-          {props.type === "select" ? (
-            <S.LecturerTextWrapper>
-              <S.LecturerTextLeftWrapper>
-                <S.LecturerName>{props.data.name}</S.LecturerName>
+          <S.LecturerTextWrapper>
+            <S.LecturerTextLeftWrapper>
+              <S.LecturerName>{props.data.name}</S.LecturerName>
+              {props.data.phone ? (
                 <S.LecturerInfoText>
                   연락처 : {props.data.phone}
                 </S.LecturerInfoText>
+              ) : null}
+              {props.data.email ? (
                 <S.LecturerInfoText>
                   이메일 : {props.data.email}
                 </S.LecturerInfoText>
-              </S.LecturerTextLeftWrapper>
+              ) : null}
+            </S.LecturerTextLeftWrapper>
+            {props.type === "select" ? (
               <S.LecturerTextRigthWrapper>
                 <S.LecturerSelectRadio
                   type="radio"
@@ -30,8 +34,8 @@ export default function LecturerCardUI(props: ILecturerCardUI) {
                 />
                 <S.LecturerSelectText>선택</S.LecturerSelectText>
               </S.LecturerTextRigthWrapper>
-            </S.LecturerTextWrapper>
-          ) : null}
+            ) : null}
+          </S.LecturerTextWrapper>
           <S.LecturerInfoTextArea
             className="view ql-editor"
             dangerouslySetInnerHTML={{ __html: props.data.profile }}

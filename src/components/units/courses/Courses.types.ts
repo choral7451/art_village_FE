@@ -7,4 +7,14 @@ export interface ICoursesUI {
       subDataList: { data: string; router: string }[];
     }[];
   };
+  lecture: {
+    image: string;
+    title: string;
+    lecturer: {
+      name: string;
+    };
+    tag: string;
+  };
+
+  onClickPush: (path: string) => () => void;
 }
