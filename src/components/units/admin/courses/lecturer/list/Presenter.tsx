@@ -7,11 +7,25 @@ export default function AdminLecturerListUI(props: IAdminLecturerListUI) {
   let list;
   if (props.search) {
     list = props.lecturer?.map((el) => {
-      return <LecturerCard key={uuidv4()} data={el} />;
+      return (
+        <LecturerCard
+          key={uuidv4()}
+          data={el}
+          type={"select"}
+          change={props.onChangeSelect}
+        />
+      );
     });
   } else {
     list = props.lecturers?.map((el) => {
-      return <LecturerCard key={uuidv4()} data={el} />;
+      return (
+        <LecturerCard
+          key={uuidv4()}
+          data={el}
+          type={"select"}
+          change={props.onChangeSelect}
+        />
+      );
     });
   }
 
@@ -30,6 +44,8 @@ export default function AdminLecturerListUI(props: IAdminLecturerListUI) {
           />
         </S.SearchWrapper>
         <S.BtnWrapper>
+          <S.Btn>수정</S.Btn>
+          <S.Btn>삭제</S.Btn>
           <S.Btn onClick={props.onClickPush("/admin/courses/lecturer/write")}>
             강사 등록
           </S.Btn>

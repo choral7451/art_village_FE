@@ -22,4 +22,4 @@ export interface IAdminLecturerListUI {
   lecturer: Lecturer | string;
   register: UseFormRegister<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
-}
+  onChangeSelect:any

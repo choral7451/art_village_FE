@@ -65,7 +65,7 @@ export const Btn = styled.button`
   font-weight: bold;
   border-radius: 10px;
   padding: 10px;
-  margin: 0 5%;
+  margin: 0 2%;
   width: 200px;
   font-size: 14px;
   height: fit-content;

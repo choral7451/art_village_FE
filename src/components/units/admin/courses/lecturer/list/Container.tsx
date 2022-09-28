@@ -12,6 +12,7 @@ export default function AdminLecturerList() {
   const [search, setSearch] = useState(false);
   const [findLecturer] = useLazyQuery(FIND_LECTURER);
   const [lecturer, setLecturer] = useState("");
+  const [selectNum, setSelectNum] = useState("");
 
   const onClickPush = (path: string) => () => {
     router.push(path);
@@ -26,11 +27,14 @@ export default function AdminLecturerList() {
     });
     setLecturer(data);
   };
-  const schema = yup.object({});
 
   const { handleSubmit, register } = useForm({
     mode: "onChange",
   });
+
+  const onChangeSelect = (num: string) => () => {
+    setSelectNum(num);
+  };
 
   return (
     <AdminLecturerListUI
@@ -41,6 +45,7 @@ export default function AdminLecturerList() {
       register={register}
       lecturer={lecturer.findLecturer}
       onSearch={onSearch}
+      onChangeSelect={onChangeSelect}
     />
   );
 }

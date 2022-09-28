@@ -1,11 +1,11 @@
 import { gql } from "@apollo/client";
 
-export const UPLOAD_FILE = gql`
+export const CREATE_LECTURE = gql`
   mutation createLecture(
-    $lecturer: String!
+    $lecturer: Float!
     $title: String!
-    $category: String!
-    $subCategory: String!
+    $category: Float!
+    $subCategory: Float!
     $subTitle: [String!]!
     $files: [Upload!]!
     $description: String!
@@ -30,6 +30,7 @@ export const FETCH_CATEGORY = gql`
       id
       name
       subCategory {
+        id
         name
       }
     }

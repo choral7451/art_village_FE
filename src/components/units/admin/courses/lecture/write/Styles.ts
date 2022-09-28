@@ -184,6 +184,7 @@ export const Select = styled.select`
 export const TextArea = styled(ReactQuill)`
   margin-left: 20px;
   margin-bottom: 30px;
+  padding-bottom: 50px;
   height: 200px;
   width: 70%;
 `;

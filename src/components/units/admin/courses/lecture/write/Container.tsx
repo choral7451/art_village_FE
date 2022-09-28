@@ -1,9 +1,9 @@
 import { useLazyQuery, useMutation, useQuery } from "@apollo/client";
 import { Modal } from "antd";
-import { ChangeEvent, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import AdminCourseWriteUI from "./Presenter";
-import { FETCH_CATEGORY, UPLOAD_FILE } from "./Queries";
+import { CREATE_LECTURE, FETCH_CATEGORY } from "./Queries";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/router";
@@ -21,6 +21,7 @@ export default function AdminCourseWrite() {
   const [lecturerSearchFlag, setLecturerSearchFlag] = useState(false);
   const [search, setSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const [selectNum, setSelectNum] = useState("");
   const [lecturerInfo, setLecturerInfo] = useState([
     {
       id: 0,
@@ -32,9 +33,9 @@ export default function AdminCourseWrite() {
     },
   ]);
 
-  const [uploadFile] = useMutation(UPLOAD_FILE);
-  const category = useQuery(FETCH_CATEGORY);
+  const [createLecture] = useMutation(CREATE_LECTURE);
   const [lecturer] = useLazyQuery(FIND_LECTURER);
+  const category = useQuery(FETCH_CATEGORY);
 
   const onChangeLecturerSearch = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === "direct") {
@@ -44,15 +45,32 @@ export default function AdminCourseWrite() {
     }
   };
 
-  const onChangeCategory = (e: ChangeEvent<HTMLSelectElement>) => {
-    setCategoryValue(e.target.value);
+  const onChangeCategory = async (e: ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value !== "분류") {
+      if (e.target.className.split(" ")[0] === "category") {
+        setCategoryValue(e.target.value);
+        const findCategory = category.data?.fetchCategory.filter(
+          (el: any) => e.target.value === el.name
+        );
 
-    category.data?.fetchCategory.forEach((el: any) => {
-      if (el.name === e.target.value) {
-        setSubCategoryArr(el.subCategory);
+        setSubCategoryArr(findCategory[0].subCategory);
+        setValue("category", findCategory[0].id);
+        setValue("subCategory", undefined);
+        trigger("category");
+        trigger("subCategory");
+      } else if (e.target.className.split(" ")[0] === "subCategory") {
+        setSubCategoryValue(e.target.value);
+
+        const subCategory: any[] = subCategoryArr.filter((el: any) => {
+          return el.name === e.target.value;
+        });
+
+        setValue("subCategory", subCategory[0].id);
+        trigger("subCategory");
       }
-    });
+    }
   };
+
   const onChangeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
@@ -64,12 +82,8 @@ export default function AdminCourseWrite() {
         name: searchValue.trim(),
       },
     });
-
+    setSelectNum("");
     setLecturerInfo(data.findLecturer);
-  };
-
-  const onChangeSubCategory = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSubCategoryValue(e.target.value);
   };
 
   const onChangeLectureCount = (e: ChangeEvent<HTMLInputElement>) => {
@@ -87,54 +101,82 @@ export default function AdminCourseWrite() {
   };
 
   const schema = yup.object({
-    lecturer: yup.string().required("이름을 입력해 주세요."),
-    subCategory: yup.string().required("소분류를 선택해 주세요."),
+    category: yup.number().test("nullable ", (value) => {
+      return value !== undefined;
+    }),
+    subCategory: yup
+      .number()
+      .test("nullable ", "강의 소분류를 선택해주세요.", (value) => {
+        return value !== undefined;
+      }),
     title: yup.string().required("제목을 입력해주세요."),
-    image: yup.mixed().required("이미지를 등록해주세요."),
+    image: yup
+      .mixed()
+      .test("nullable", "강의 이미지를 첨부해주세요.", (value) => {
+        return value.length > 0;
+      })
+      .test(
+        "확장자 검사",
+        "jpeg, png, webp, jpg 형식의 파일을 첨부해주세요.",
+        (value) => {
+          const extension = ["jpeg", "png", "webp", "jpg", "gif"];
+          return extension.includes(value[0]?.name.split(".")[1].toLowerCase());
+        }
+      ),
+    file0: yup
+      .mixed()
+      .test("nullable", "강의 소개영상을 첨부해주세요.", (value) => {
+        return value.length > 0;
+      }),
     description: yup.string().required("강의 설명을 기입해주세요."),
   });
 
-  const { handleSubmit, register, formState, setValue, getValues, trigger } =
-    useForm({
-      resolver: yupResolver(schema),
-      mode: "onChange",
-    });
-  console.log("Asdasd");
-  const submitWrite = async (e: any) => {
-    console.log(e);
-    // try {
-    //   setLoading(true);
-    //   const files: any[] = [e.image?.[0]];
-    //   const subTitle: string[] = ["강의 소개"];
-    //   for (let i = 0; i <= Number(lectureCount); i++) {
-    //     files.push(e[`file${i}`]?.[0]);
-    //     if (i !== 0) {
-    //       subTitle.push(e[`subTitle${i}`]?.[0].trim());
-    //     }
-    //   }
-    //   await uploadFile({
-    //     variables: {
-    //       files,
-    //       subTitle,
-    //       category: categoryValue,
-    //       subCategory: getValues("subCategory"),
-    //       lecturer: e.lecturer.trim(),
-    //       title: e.title.trim(),
-    //       description: getValues("description"),
-    //     },
-    //   });
-    //   setLoading(false);
-    //   Modal.success({
-    //     content: "강의 등록이 완료되었습니다. ",
-    //     onOk() {
-    //       router.push("/admin/courses");
-    //     },
-    //   });
-    // } catch (error: any) {
-    //   Modal.error({ content: error.message });
-    // }
-  };
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isValid },
+    setValue,
+    getValues,
+    trigger,
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
 
+  const submitWrite = async (data: any) => {
+    try {
+      setLoading(true);
+
+      const files: any[] = [data.image?.[0]];
+      const subTitle: string[] = ["강의 소개"];
+      for (let i = 0; i <= Number(lectureCount); i++) {
+        files.push(data[`file${i}`]?.[0]);
+        if (i !== 0) {
+          subTitle.push(data[`subTitle${i}`]?.[0].trim());
+        }
+      }
+      await createLecture({
+        variables: {
+          files,
+          subTitle,
+          category: data.category,
+          subCategory: data.subCategory,
+          lecturer: Number(selectNum),
+          title: data.title.trim(),
+          description: getValues("description").trim(),
+        },
+      });
+      setLoading(false);
+      Modal.success({
+        content: "강의 등록이 완료되었습니다. ",
+        onOk() {
+          router.push("/admin/courses/lecture/list");
+        },
+      });
+    } catch (error: any) {
+      Modal.error({ content: error.message });
+    }
+  };
   const modules = {
     toolbar: {
       container: [
@@ -191,9 +233,17 @@ export default function AdminCourseWrite() {
     },
   };
 
+  useEffect(() => {
+    register("description", { required: true });
+  }, []);
+
   const onChangeTextArea = (data: string) => {
     setValue("description", data === "<p><br></p>" ? "" : data);
     trigger("description");
+  };
+
+  const onChangeSelect = (num: string) => () => {
+    setSelectNum(num);
   };
 
   return (
@@ -204,14 +254,14 @@ export default function AdminCourseWrite() {
       onChangeLectureCount={onChangeLectureCount}
       submitWrite={submitWrite}
       handleSubmit={handleSubmit}
-      formState={formState}
+      errors={errors}
+      isValid={isValid}
       register={register}
       loading={loading}
       category={category.data?.fetchCategory}
       categoryValue={categoryValue}
       subCategoryValue={subCategoryValue}
       onChangeCategory={onChangeCategory}
-      onChangeSubCategory={onChangeSubCategory}
       subCategoryArr={subCategoryArr}
       setValue={setValue}
       onClickSearch={onClickSearch}
@@ -222,6 +272,8 @@ export default function AdminCourseWrite() {
       onChangeSearchValue={onChangeSearchValue}
       lecturerInfo={lecturerInfo}
       search={search}
+      onChangeSelect={onChangeSelect}
+      selectNum={selectNum}
     />
   );
 }

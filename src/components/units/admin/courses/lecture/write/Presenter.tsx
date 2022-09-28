@@ -5,7 +5,15 @@ import LecturerCard from "../../../../../commons/lecturerCard/Container";
 
 export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
   const lecturer = props.lecturerInfo.map((el) => {
-    return <LecturerCard key={uuidv4()} data={el} />;
+    return (
+      <LecturerCard
+        key={uuidv4()}
+        data={el}
+        type="select"
+        change={props.onChangeSelect}
+        check={props.selectNum}
+      />
+    );
   });
 
   const category = props.category?.map((el) => {
@@ -76,7 +84,6 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
           </S.SearchWrapper>
           {props.search ? lecturer : null}
         </S.HeaderWrapper>
-
         <S.Mid>
           <S.RowWrapper>
             <S.Text>강의 제목 : </S.Text>
@@ -86,33 +93,38 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
               {...props.register("title")}
             />
           </S.RowWrapper>
-          <S.Err>{props.formState.errors.title?.message}</S.Err>
+          <S.Err>{props.errors.title?.message}</S.Err>
           <S.RowWrapper>
             <S.Text>분류 : </S.Text>
             <S.Select
               value={props.categoryValue}
               onChange={props.onChangeCategory}
+              className="category"
             >
               <option>분류</option>
               {category}
             </S.Select>
             <S.Text>소분류 : </S.Text>
             <S.Select
-              onChange={props.onChangeSubCategory}
-              {...props.register("subCategory")}
+              value={props.subCategoryValue}
+              onChange={props.onChangeCategory}
+              className="subCategory"
             >
               <option>분류</option>
               {subCategory}
             </S.Select>
+            <S.Err>{props.errors.subCategory?.message}</S.Err>
           </S.RowWrapper>
           <S.RowWrapper>
             <S.Text>강의 이미지 : </S.Text>
             <S.Upload type="file" {...props.register("image")} />
           </S.RowWrapper>
+          <S.Err>{props.errors.image?.message}</S.Err>
           <S.RowWrapper>
             <S.Text>강의 소개 : </S.Text>
             <S.Upload type="file" {...props.register(`file0`)} />
           </S.RowWrapper>
+          <S.Err>{props.errors.file0?.message}</S.Err>
           <S.RowWrapper>
             <S.Text>강의 개수 : </S.Text>
             <S.LectureCountInput
@@ -133,15 +145,12 @@ export default function AdminCourseWriteUI(props: IAdminCourseWriteUI) {
               onChange={props.onChangeTextArea}
               modules={props.modules}
             />
-            <S.Err>{props.formState.errors.description?.message}</S.Err>
           </S.RowWrapper>
+          <S.Err>{props.errors.description?.message}</S.Err>
         </S.Body>
         {list}
         <S.WriteWrapper>
-          <S.WriteBtn
-            type="submit"
-            disabled={!props.formState.isDirty || !props.formState.isValid}
-          >
+          <S.WriteBtn disabled={!props.isValid || !(props.selectNum !== "")}>
             등록
           </S.WriteBtn>
         </S.WriteWrapper>

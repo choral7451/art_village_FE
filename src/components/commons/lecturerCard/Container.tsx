@@ -1,6 +1,13 @@
-import { Lecturer } from "../../units/admin/courses/lecturer/list/Types";
 import LecturerCardUI from "./Presenter";
+import { ILecturer } from "./Types";
 
-export default function LecturerCard(data: { data: Lecturer }) {
-  return <LecturerCardUI data={data.data} />;
+export default function LecturerCard(props: ILecturer) {
+  return (
+    <LecturerCardUI
+      data={props.data}
+      type={props.type}
+      change={props.change}
+      check={props.check}
+    />
+  );
 }
