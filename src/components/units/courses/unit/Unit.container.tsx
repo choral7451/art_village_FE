@@ -20,7 +20,7 @@ export default function UnitContainer() {
 
   const onChangeVideo = (data: string) => () => {
     setVideo(data);
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 200);
   };
 
   return (
