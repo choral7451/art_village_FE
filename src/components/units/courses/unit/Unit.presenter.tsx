@@ -60,8 +60,8 @@ export default function UnitUI(props: IUnitUI) {
           프로필
         </S.NavBtn>
         <S.NavBtn
-          style={props.nav === "feedback" ? { backgroundColor: "#eaeaea" } : {}}
-          onClick={props.onClickNavBtn("feedback")}
+          style={props.nav === "rate" ? { backgroundColor: "#eaeaea" } : {}}
+          onClick={props.onClickNavBtn("rate")}
         >
           수강평(1)
         </S.NavBtn>
@@ -79,8 +79,41 @@ export default function UnitUI(props: IUnitUI) {
       ) : null}
       {props.nav === "profile" ? (
         <S.ProfileWrapper>
+          <S.TitleWrapper>
+            <S.LectureTitleText>프로필</S.LectureTitleText>
+          </S.TitleWrapper>
           <LecturerCard type="basic" data={props.data.lecturer} />
         </S.ProfileWrapper>
+      ) : null}
+      {props.nav === "rate" ? (
+        <S.RateWrapper>
+          <S.TitleWrapper>
+            <S.LectureTitleText>수강평</S.LectureTitleText>
+          </S.TitleWrapper>
+          <S.RateContentWrapper>
+            <S.RateContentHeader>
+              <S.RateContentName>임성준</S.RateContentName>
+              <S.RateContentDate>2022-09-30 16:30:21</S.RateContentDate>
+            </S.RateContentHeader>
+            <S.RateBody>
+              <S.RateContent>
+                asdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdasasdassdas
+              </S.RateContent>
+              <S.Star value={5} />
+            </S.RateBody>
+          </S.RateContentWrapper>
+          <S.RateWriteWrapper>
+            <S.RateWriteArea
+              placeholder="수강평을 입력해주세요."
+              spellCheck={false}
+            />
+            <S.RateButtonWrapper>
+              <S.RateButtonText>평 점</S.RateButtonText>
+              <S.Star value={0} />
+              <S.RegisterBtn>등 록</S.RegisterBtn>
+            </S.RateButtonWrapper>
+          </S.RateWriteWrapper>
+        </S.RateWrapper>
       ) : null}
     </S.Body>
   );

@@ -85,6 +85,7 @@ export const Star = styled(Rate)`
   margin-left: 20px;
   margin-bottom: 10px;
 `;
+
 export const ContentWrapper = styled.div`
   width: 70%;
   margin-top: 10px;
@@ -97,8 +98,16 @@ export const ProfileWrapper = styled.div`
   margin-top: 10px;
   border: 2px solid #eaeaea;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+`;
+
+export const TitleWrapper = styled.div`
+  padding-top: 50px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const LectureTitleText = styled.div`
@@ -169,5 +178,99 @@ export const NavBtn = styled.button`
   margin-right: 20px;
   :hover {
     background-color: #eaeaea;
+  }
+`;
+
+export const RateWrapper = styled.div`
+  width: 70%;
+  margin-top: 10px;
+  border: 2px solid #eaeaea;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const RateContentWrapper = styled.div`
+  border: 2px solid #eaeaea;
+  border-radius: 10px;
+  margin-top: 30px;
+  width: 90%;
+`;
+
+export const RateContentHeader = styled.div`
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+`;
+
+export const RateContentName = styled.div`
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px 40px;
+`;
+
+export const RateContentDate = styled.div`
+  font-size: 16px;
+`;
+
+export const RateBody = styled.div`
+  width: 100%;
+  display: flex;
+`;
+
+export const RateContent = styled.div`
+  padding: 10px 40px 40px 40px;
+  width: 70%;
+  word-wrap: break-word;
+`;
+
+export const RegisterBtn = styled.div`
+  cursor: pointer;
+  font-weight: bold;
+  padding: 6px 60px;
+  margin: 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #427ed1;
+  color: white;
+  background-color: #427ed1;
+  :hover {
+    background-color: white;
+    color: black;
+  }
+`;
+
+export const RateWriteWrapper = styled.form`
+  width: 90%;
+  margin: 30px 0;
+  border: 2px solid #eaeaea;
+`;
+
+export const RateButtonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+  width: 100%;
+`;
+
+export const RateButtonText = styled.div`
+  font-size: 22px;
+  font-weight: bold;
+`;
+
+export const RateWriteArea = styled.textarea`
+  width: 100%;
+  height: 200px;
+  resize: none;
+  padding: 30px 40px;
+  border: none;
+  border-bottom: 1px solid #eaeaea;
+  :focus {
+    outline: none;
   }
 `;
