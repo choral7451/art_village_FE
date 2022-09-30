@@ -28,7 +28,9 @@ export default function HomeUI(props: IHomeUI) {
       <BannerContainer />
       <S.Wrapper>
         <S.MembershipWrapper>
-          <S.MembershipBtn>멤버쉽 가입</S.MembershipBtn>
+          <S.MembershipBtn onClick={props.onClickPush("/payment")}>
+            멤버쉽 가입
+          </S.MembershipBtn>
         </S.MembershipWrapper>
         <S.SubTitle onClick={props.onClickPush("/courses")}>
           강의 ✨ <RightOutlined />
