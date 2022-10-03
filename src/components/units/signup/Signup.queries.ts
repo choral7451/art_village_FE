@@ -9,13 +9,13 @@ export const Signup = gql`
 `;
 
 export const SendToken = gql`
-  mutation sendToken($email: String!) {
-    sendToken(email: $email)
+  mutation sendEmailCheckToken($email: String!) {
+    sendEmailCheckToken(email: $email)
   }
 `;
 
 export const CheckToken = gql`
-  mutation checkToken($token: String!) {
-    checkToken(token: $token)
+  mutation checkEmailToken($token: String!) {
+    checkEmailToken(token: $token)
   }
 `;

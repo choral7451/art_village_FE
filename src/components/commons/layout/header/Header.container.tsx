@@ -1,14 +1,16 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { AccessTokenState } from "../../../../commons/store";
 import { FETCH_LOGIN_USER } from "../../../units/home/Home.queries";
 import HeaderUI from "./Header.presenter";
+import { MUTATION_LOGOUT } from "./Header.queries";
 
 export default function Header() {
   const [accessToken, setAccessToken] = useRecoilState(AccessTokenState);
   const [searchState, setSearchState] = useState(false);
+  const [logout] = useMutation(MUTATION_LOGOUT);
 
   const router = useRouter();
 
@@ -16,8 +18,11 @@ export default function Header() {
     router.push(url);
   };
 
-  const onClickLogout = () => {
-    setAccessToken("");
+  const onClickLogout = async () => {
+    const logoutReq = await logout();
+    if (logoutReq) {
+      setAccessToken("");
+    }
   };
 
   const { data } = useQuery(FETCH_LOGIN_USER);
