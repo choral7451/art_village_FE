@@ -225,7 +225,7 @@ export const RateContent = styled.div`
   word-wrap: break-word;
 `;
 
-export const RegisterBtn = styled.div`
+export const RegisterBtn = styled.button`
   cursor: pointer;
   font-weight: bold;
   padding: 6px 60px;

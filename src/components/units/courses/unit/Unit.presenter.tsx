@@ -102,15 +102,18 @@ export default function UnitUI(props: IUnitUI) {
               <S.Star value={5} />
             </S.RateBody>
           </S.RateContentWrapper>
-          <S.RateWriteWrapper>
+          <S.RateWriteWrapper
+            onSubmit={props.handleSubmit(props.onClickReview)}
+          >
             <S.RateWriteArea
               placeholder="수강평을 입력해주세요."
               spellCheck={false}
+              {...props.register("review")}
             />
             <S.RateButtonWrapper>
               <S.RateButtonText>평 점</S.RateButtonText>
-              <S.Star value={0} />
-              <S.RegisterBtn>등 록</S.RegisterBtn>
+              <S.Star onChange={props.onClickStar} />
+              <S.RegisterBtn type="submit">등 록</S.RegisterBtn>
             </S.RateButtonWrapper>
           </S.RateWriteWrapper>
         </S.RateWrapper>
